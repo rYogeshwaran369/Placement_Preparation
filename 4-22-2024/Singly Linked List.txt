@@ -1,0 +1,277 @@
+Linked Lists
+Single Linked List
+adding/removing an element (like in the beginning, middle, at the end)
+Finding an element, length, finding duplicate
+traversing
+reversing
+comparing two different list (like union, duplicate)
+sorting a linked list
+skipping elements
+Double Linked List
+adding/removing an element (like in the beginning, middle, at the end)
+Finding an element, length
+traversing
+reversing
+sorting a linked list
+skipping elements
+
+
+
+---------------------------------------------   SINGLY LINKED LIST
+
+
+import java.util.*;
+class Main{
+    static class Node{
+        int data;
+        Node next;
+        Node(int n)
+        {
+            this.data=n;
+            this.next=null;
+        }
+    }
+   static Node head,tail = null;
+   
+//   ******************************************************
+   public static void main(String args[])
+    {
+        Scanner sc = new Scanner(System.in);
+        InsertAtBeginning(4);
+        InsertAtBeginning(4);
+        InsertAtBeginning(4);
+        InsertAtBeginning(4);
+        InsertAtBeginning(4);
+        InsertAtBeginning(4);
+        InsertAtEnd(5);
+        InsertAtEnd(5);
+        InsertAtEnd(5);
+        InsertAtEnd(5);
+        InsertAtEnd(6);
+        InsertAtEnd(6);
+        InsertAtEnd(6);
+        InsertAtEnd(5);
+        InsertAtEnd(6);
+        InsertAtPosOf(1,0);
+        // DeleteAtBegin();
+        // DeleteAtEnd();
+        // DeleteAtPosOf(1);
+        RemoveDuplication();
+        
+        Print();
+        System.out.println("reverse");
+        Reverse();
+        Print();
+        
+    }
+    public static void Print()
+    {
+        Node temp = head;
+        
+        while(temp!=null)
+        {
+            System.out.println(temp.data);
+            temp=temp.next;
+        }
+    }
+//   *****************************************************
+
+    // ----------------------------// Insertion InsertAtBeginning , InsertAtEnd , InsertAtPosOf
+    
+    public static void InsertAtBeginning(int n)
+    {
+        if(head==null)
+        {
+            head=tail = new Node(n);
+        }
+        else
+        {
+            Node hn = new Node(n);
+            hn.next = head;
+            head = hn;
+        }
+    }
+    
+    public static void InsertAtEnd(int n)
+    {
+        if(head==null)
+        {
+            head=tail = new Node(n);
+        }
+        else
+        {
+            tail.next = new Node(n);
+            tail=tail.next;
+        }
+    }
+    
+    public static void InsertAtPosOf(int pos,int n)
+    {
+        if(head==null)
+        {
+            System.out.println("List is Empty");
+            return;
+        }
+        else
+        {
+           Node temp = head;
+           int cnt=0;
+           while(temp!=null)
+           {
+               if(cnt==pos)
+               {
+                   Node nx = temp.next;
+                   Node nn = new Node(n);
+                   nn.next = nx;
+                   temp.next = nn;
+                   break;
+               }
+               temp=temp.next;
+               cnt++;
+           }
+        }
+    }
+    
+    // -----------------------------------// Deletion AtBeginning ,AtEnd , AtPosOf
+    
+    public static void DeleteAtBegin()
+    {
+        if(head==null)
+        {
+            System.out.println("List is Empty");
+            return;
+        }
+        else
+        {
+            head=head.next;
+        }
+    }
+    
+    public static void DeleteAtEnd()
+    {
+         if(head==null)
+        {
+            System.out.println("List is Empty");
+            return;
+        }
+        if(head.next==null)
+        {
+            head=null;
+            return;
+        }
+        else
+        {
+            Node temp=head;
+            while(temp.next.next!=null)
+            {
+                temp=temp.next;
+            }
+            temp.next=null;
+        }
+    }
+    
+    public static void DeleteAtPosOf(int n)
+    {
+        if(head==null)
+        {
+            System.out.println("List is Empty");
+            return;
+        }
+        else
+        {
+            int cnt=0;
+            Node temp=head;
+            while(temp!=null)
+            {
+                if(cnt==n-1)
+                {
+                    temp.next=temp.next.next;
+                    break;
+                }
+                temp=temp.next;
+                cnt++;
+            }
+        }
+    }
+    
+    // -------------------------------------=============-// Search  Duplication
+    
+    // Search 
+    
+    public static void Search(int n)
+    {
+        if(head==null)
+        {
+            System.out.println("List is empty");
+        }
+        else
+        {
+            Node temp = head;
+            while(temp!=null)
+            {
+                if(temp.data==n)
+                {
+                    System.out.println("Element Found");
+                    return;
+                }
+              temp=temp.next;
+            }
+            System.out.println("Element not Found");
+        }
+    }
+    
+    
+    // Duplication
+    
+    public static void RemoveDuplication()
+    {
+        ArrayList<Integer> list = new ArrayList<>();
+        
+        Node temp = head;
+        Node prev = null;
+        
+        while(temp!=null)
+        {
+            if(list.contains(temp.data))
+            {
+               prev.next=temp.next;
+            }
+            else
+            {
+                list.add(temp.data);
+                prev=temp;
+            }
+                temp=temp.next;
+            
+        }
+    }
+    
+    
+    // Reversing
+    
+    public static void Reverse()
+    {
+        if(head==null)
+        {
+            System.out.println("list is empty");
+            return;
+        }
+        else
+        {
+            Node temp=head;
+            Node prev = null;
+            while(temp!=null)
+            {
+                Node t = temp.next;
+                temp.next=prev;
+                prev=temp;
+                temp = t;
+            }
+            head=prev;
+        }
+    }
+    
+
+}
+
+

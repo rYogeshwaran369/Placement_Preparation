@@ -1,0 +1,166 @@
+ Check whether the given number is prime or not and Print the prime numbers between the given range(Sieve of eratosthenes)
+
+*** Java : 
+import java.util.*;
+
+public class Main
+{
+	public static void main(String[] args) {
+	    System.out.println(PrimeCheck(20));
+	    PrimePrint(50);
+	}
+	
+	public static void PrimePrint(int n)
+	{
+	    boolean list[] = new boolean[n+1];
+	    
+	    
+	    for(int i=2;i<=n;i++)
+	    {
+	        list[i]=true;
+	    }
+	    
+	    for(int i=2;i*i<=n;i++)
+	    {
+	        if(list[i])
+	        {
+	            for(int j=i*i;j<=n;j+=i)
+	            {
+	                list[j]=false;
+	            }
+	        }
+	    }
+	    
+	    for(int i=2;i<=n;i++)
+	    {
+	        if(list[i])
+	        {
+	            System.out.println(i);
+	        }
+	    }
+	    
+	    
+	}
+	
+	public static boolean PrimeCheck(int n)
+	{
+	    if(n<=1)
+	    {
+	        return false;
+	    }
+	    if(n==2)
+	    {
+	        return true;
+	    }
+	    if(n%2==0)
+	    {
+	        return false;
+	    }
+	    for(int i=3;i<=n;i++)
+	    {
+	        if(n%i==0)
+	        {
+	            return false;
+	        }
+	    }
+	    return true;
+	}
+}
+
+
+
+*** Python : 
+
+
+
+import math
+
+def check(n):
+    if n<=1:
+        return False 
+    if n==2:
+        return True 
+    if n%2==0:
+        return False
+    for i in range(3,int(math.sqrt(n))+1,2):
+        if(n%i==0):
+            return False 
+    return True 
+
+def PrintPrime(n):
+    
+    prime = [True for _ in range(n+1)]
+    
+    for i in range(2,int(math.sqrt(n))):
+        if(prime[i]):
+            for j in range(i*i,n+1,i):
+                prime[j]=False 
+    
+    pr = [i for i in range(2,len(prime)) if prime[i]]
+    print(pr)
+        
+
+PrintPrime(23)
+print(check(13))
+
+
+
+
+*** JavaScript
+
+// Online Javascript Editor for free
+// Write, Edit and Run your Javascript code using JS Online Compiler
+check=(n)=>{
+       if(n<=1)
+	    {
+	        return false;
+	    }
+	    if(n==2)
+	    {
+	        return true;
+	    }
+	    if(n%2==0)
+	    {
+	        return false;
+	    }
+	    for(let i=3;i<=(i*0.5)+1;i+=2)
+	    {
+	        if(n%i==0)
+	        {
+	            return false;
+	        }
+	    }
+	    return true;
+}
+
+PrintPrime=(n)=>{
+    list = []
+    for(let i=2;i<=n+1;i++)
+    {
+        list[i]=true;
+    }
+    console.log(list)
+    
+    for(let i=2;i*i<=n;i++)
+    {
+        if(list[i])
+        {
+            for(let j=i*i;j<=n;j+=i)
+            {
+                list[j]=false;
+            }
+        }
+    }
+    
+    for(let i=2;i<=n;i++)
+    {
+        if(list[i])
+        {
+            console.log(i);
+        }
+    }
+    console.log(list)
+}
+console.log(check(14))
+PrintPrime(25)
+
